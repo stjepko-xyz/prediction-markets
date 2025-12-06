@@ -120,3 +120,35 @@
     @apply bg-background text-foreground;
   }
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600; 
+}
+
+h1 {
+  font-size: 40px;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+h5 {
+  font-size: 16px;
+}
+
+h6 {
+  font-size: 14px;
+}
+
+span {
+  font-size: 14px;
+}
