@@ -15,7 +15,7 @@ import Link from "next/link";
 const Navigation = () => {
   return (
     <NavigationMenu className="w-full max-w-none justify-between my-4">
-      <NavigationMenuList>
+      <NavigationMenuList className="gap-4">
         <NavigationMenuItem>
           <NavigationMenuLink asChild>
             <Logo />
