@@ -121,6 +121,10 @@
   }
 }
 
+button, a {
+  cursor: pointer;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600; 
 }
@@ -154,7 +158,7 @@ span {
 }
 
 /* Styles for Solana Wallet Adapter UI */
-button.wallet-adapter-button {
+.wallet-adapter-dropdown button.wallet-adapter-button.wallet-adapter-button-trigger {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
