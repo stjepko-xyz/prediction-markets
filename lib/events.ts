@@ -8,6 +8,10 @@ const getEvents = async () => {
         headers: {
           "Content-Type": "application/json",
         },
+        cache: "force-cache",
+        next: {
+          revalidate: 60,
+        },
       }
     );
 
@@ -33,6 +37,10 @@ const getEventById = async (id: string, withNestedMarkets: boolean = false) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
+        },
+        cache: "force-cache",
+        next: {
+          revalidate: 60,
         },
       }
     );

@@ -35,7 +35,7 @@ const EventCard = ({ id, title, image, markets }: EventCardProps) => {
               alt={title}
               width={40}
               height={40}
-              className="rounded-md object-cover"
+              className="rounded-md object-cover shrink-0"
               onError={() => setImageError(true)}
             />
           )}
