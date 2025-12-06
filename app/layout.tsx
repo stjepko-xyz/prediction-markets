@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { Wallet, Navigation, Categories } from "@/components/index";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,19 +41,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="header my-2 max-w-[1280px] mx-auto px-4">
-          <div className="flex">
-            {categories?.map((category) => (
-              <Button key={category} variant="ghost" asChild>
-                <Link href="#" className=" font-semibold">
-                  {category}
-                </Link>
-              </Button>
-            ))}
+        <Wallet>
+          <div className="header max-w-[1280px] mx-auto px-4">
+            <Navigation />
+            <Categories />
           </div>
-        </div>
-        <Separator />
-        <div className="page max-w-[1280px] mx-auto px-4 py-8">{children}</div>
+          <Separator />
+          <div className="page max-w-[1280px] mx-auto px-4 py-8">
+            {children}
+          </div>
+        </Wallet>
       </body>
     </html>
   );

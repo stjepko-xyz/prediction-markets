@@ -152,3 +152,22 @@ h6 {
 span {
   font-size: 14px;
 }
+
+/* Styles for Solana Wallet Adapter UI */
+button.wallet-adapter-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  white-space: nowrap !important;
+  border-radius: var(--radius-md) !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  height: 2.25rem !important;
+  padding: 0.5rem 1rem !important;
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05) !important;
+  transition: all 0.15s ease !important;
+}
