@@ -8,9 +8,10 @@ const Events = async () => {
       {events?.map((event, index) => (
         <EventCard
           key={index}
-          title={event.title}
-          image={event.imageUrl}
-          markets={event.markets}
+          id={event?.ticker}
+          title={event?.title}
+          image={event?.imageUrl}
+          markets={event?.markets}
         />
       ))}
     </div>

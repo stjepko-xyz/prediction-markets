@@ -1,7 +1,7 @@
 import { EventCardSkeleton, Events } from "@/components/index";
 import { Suspense } from "react";
 
-export default async function Home() {
+export default function Home() {
   return (
     <main className="flex">
       <Suspense fallback={<EventCardSkeleton />}>

@@ -11,6 +11,7 @@ import {
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import Logo from "./logo";
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 const Navigation = () => {
   return (
@@ -18,12 +19,21 @@ const Navigation = () => {
       <NavigationMenuList className="gap-4">
         <NavigationMenuItem>
           <NavigationMenuLink asChild>
-            <Logo />
+            <Button variant={"link"} size={"icon-lg"} asChild>
+              <Link href="/">
+                <Logo />
+              </Link>
+            </Button>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink asChild>
-            <Link href="#">Events</Link>
+            <Link href="/">Events</Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink asChild>
+            <Link href="/markets">Markets</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>

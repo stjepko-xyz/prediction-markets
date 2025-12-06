@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 interface EventCardProps {
+  id: string;
   title: string;
   image?: string;
   markets: Array<{
@@ -16,7 +17,7 @@ interface EventCardProps {
   }>;
 }
 
-const EventCard = ({ title, image, markets }: EventCardProps) => {
+const EventCard = ({ id, title, image, markets }: EventCardProps) => {
   const [imageError, setImageError] = useState(false);
 
   return (
@@ -24,7 +25,7 @@ const EventCard = ({ title, image, markets }: EventCardProps) => {
       {(title || image) && (
         <div className="flex items-start justify-between gap-4">
           {title && (
-            <Link href="#" className="hover:underline">
+            <Link href={`/event/${id}`} className="hover:underline">
               <h5 className="line-clamp-2">{title}</h5>
             </Link>
           )}
