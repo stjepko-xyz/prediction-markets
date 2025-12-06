@@ -6,10 +6,18 @@ const MarketCard = ({ title }) => {
       <h5 className="w-40">{title}</h5>
       <h3>73%</h3>
       <div className="flex gap-4">
-        <Button variant={"outline"} size={"lg"}>
+        <Button
+          variant={"outline"}
+          size={"lg"}
+          className="bg-green-100 text-green-700"
+        >
           Yes
         </Button>
-        <Button variant={"outline"} size={"lg"}>
+        <Button
+          variant={"outline"}
+          size={"lg"}
+          className="bg-red-100 text-red-700"
+        >
           No
         </Button>
       </div>

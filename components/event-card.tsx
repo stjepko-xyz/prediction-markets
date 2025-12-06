@@ -53,8 +53,20 @@ const EventCard = ({ id, title, image, markets }: EventCardProps) => {
                 <h5>{market?.probability || "20"}%</h5>
                 <div className="flex">
                   <ButtonGroup>
-                    <Button variant={"outline"}>Yes</Button>
-                    <Button variant={"outline"}>No</Button>
+                    <Button
+                      variant={"outline"}
+                      size="sm"
+                      className="bg-green-100 text-green-700"
+                    >
+                      Yes
+                    </Button>
+                    <Button
+                      variant={"outline"}
+                      size="sm"
+                      className="bg-red-100 text-red-700"
+                    >
+                      No
+                    </Button>
                   </ButtonGroup>
                 </div>
               </div>
