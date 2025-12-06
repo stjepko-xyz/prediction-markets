@@ -13,7 +13,7 @@ interface EventCardProps {
   image?: string;
   markets: Array<{
     yesSubTitle: string;
-    probability: number;
+    probability?: number;
   }>;
 }
 
@@ -29,16 +29,18 @@ const EventCard = ({ id, title, image, markets }: EventCardProps) => {
               <h5 className="line-clamp-2">{title}</h5>
             </Link>
           )}
-          {image && !imageError && (
-            <Image
-              src={image}
-              alt={title}
-              width={40}
-              height={40}
-              className="rounded-md object-cover shrink-0"
-              onError={() => setImageError(true)}
-            />
-          )}
+          <div className="h-[40px] w-[40px]">
+            {image && !imageError && (
+              <Image
+                src={image}
+                alt={title}
+                width={40}
+                height={40}
+                className="rounded-md object-cover shrink-0"
+                onError={() => setImageError(true)}
+              />
+            )}
+          </div>
         </div>
       )}
       {markets && (

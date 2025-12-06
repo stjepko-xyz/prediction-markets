@@ -1,19 +1,61 @@
 import { getEvents } from "@/lib/events";
 import EventCard from "./event-card";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationPrevious,
+  PaginationNext,
+} from "@/components/ui/pagination";
 
-const Events = async () => {
-  const events = await getEvents();
+interface EventsProps {
+  cursor?: number;
+}
+
+interface Event {
+  ticker: string;
+  title: string;
+  imageUrl: string;
+  markets: Array<{ yesSubTitle: string; probability?: number }>;
+}
+
+const Events = async ({ cursor = 0 }: EventsProps) => {
+  const { events, cursor: nextCursor } = await getEvents(cursor);
+  const hasMore = events.length > 0 && nextCursor > cursor;
+  const hasPrevious = cursor > 0;
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full">
-      {events?.map((event, index) => (
-        <EventCard
-          key={index}
-          id={event?.ticker}
-          title={event?.title}
-          image={event?.imageUrl}
-          markets={event?.markets}
-        />
-      ))}
+    <div className="w-full space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full">
+        {events?.map((event: Event, index: number) => (
+          <EventCard
+            key={index}
+            id={event?.ticker}
+            title={event?.title}
+            image={event?.imageUrl}
+            markets={event?.markets}
+          />
+        ))}
+      </div>
+
+      {(hasPrevious || hasMore) && (
+        <Pagination>
+          <PaginationContent>
+            {hasPrevious && (
+              <PaginationItem>
+                <PaginationPrevious
+                  href={`/?cursor=${Math.max(0, cursor - 20)}`}
+                />
+              </PaginationItem>
+            )}
+            {hasMore && (
+              <PaginationItem>
+                <PaginationNext href={`/?cursor=${nextCursor}`} />
+              </PaginationItem>
+            )}
+          </PaginationContent>
+        </Pagination>
+      )}
     </div>
   );
 };

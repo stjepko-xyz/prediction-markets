@@ -1,12 +1,15 @@
-import { EventCardSkeleton, Events } from "@/components/index";
-import { Suspense } from "react";
+import { Events } from "@/components/index";
 
-export default function Home() {
+interface HomeProps {
+  searchParams: Promise<{ cursor?: string }>;
+}
+
+export default async function Home({ searchParams }: HomeProps) {
+  const { cursor } = await searchParams;
+
   return (
     <main className="flex">
-      <Suspense fallback={<EventCardSkeleton />}>
-        <Events />
-      </Suspense>
+      <Events cursor={cursor ? parseInt(cursor, 10) : undefined} />
     </main>
   );
 }

@@ -1,14 +1,15 @@
-const getEvents = async () => {
+const EVENTS_PER_PAGE = 20;
+
+const getEvents = async (cursor: number = 0) => {
   try {
     // Fetch events with nested markets included
     const response = await fetch(
-      `${process.env.DFLOW_API_BASE_URL}/api/v1/events?withNestedMarkets=true&limit=50`,
+      `${process.env.DFLOW_API_BASE_URL}/api/v1/events?withNestedMarkets=true&limit=${EVENTS_PER_PAGE}&cursor=${cursor}`,
       {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
-        cache: "force-cache",
         next: {
           revalidate: 60,
         },
@@ -21,10 +22,13 @@ const getEvents = async () => {
 
     const data = await response.json();
 
-    return data?.events;
+    return {
+      events: data?.events ?? [],
+      cursor: data?.cursor ?? 0,
+    };
   } catch (error) {
     console.error("Error fetching events:", error);
-    return [];
+    return { events: [], cursor: 0 };
   }
 };
 
@@ -37,10 +41,6 @@ const getEventById = async (id: string, withNestedMarkets: boolean = false) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-        },
-        cache: "force-cache",
-        next: {
-          revalidate: 60,
         },
       }
     );
