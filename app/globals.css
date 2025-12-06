@@ -175,3 +175,7 @@ span {
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05) !important;
   transition: all 0.15s ease !important;
 }
+
+.wallet-adapter-dropdown button.wallet-adapter-button.wallet-adapter-button-trigger:hover {
+  opacity: 0.5;
+}

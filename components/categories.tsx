@@ -18,9 +18,7 @@ const Categories = () => {
     <div className="flex space-y-2">
       {categories?.map((category) => (
         <Button key={category} variant="ghost" asChild>
-          <Link href="#" className=" font-semibold">
-            {category}
-          </Link>
+          <Link href="#">{category}</Link>
         </Button>
       ))}
     </div>
