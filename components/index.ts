@@ -8,6 +8,9 @@ import Events from "./events";
 import MarketCard from "./market-card";
 import Markets from "./markets";
 import EventHeader from "./event-header";
+import OrderModal from "./order-modal";
+import OrderForm from "./order-form";
+import Modal from "./modal";
 
 export {
   Wallet,
@@ -20,4 +23,7 @@ export {
   MarketCard,
   Markets,
   EventHeader,
+  Modal,
+  OrderModal,
+  OrderForm,
 };

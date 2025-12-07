@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import OrderModal from "./order-modal";
 
 interface EventCardProps {
   id: string;
@@ -18,6 +19,8 @@ interface EventCardProps {
 }
 
 const EventCard = ({ id, title, image, markets }: EventCardProps) => {
+  const [orderModalOpen, setOrderModalOpen] = useState(false);
+  const [orderType, setOrderType] = useState<"yes" | "no">("yes");
   const [imageError, setImageError] = useState(false);
 
   return (
@@ -56,13 +59,22 @@ const EventCard = ({ id, title, image, markets }: EventCardProps) => {
                 <div className="flex">
                   <ButtonGroup>
                     <Button
+                      onClick={() => {
+                        setOrderType("yes");
+                        setOrderModalOpen(true);
+                      }}
                       variant={"outline"}
                       size="sm"
                       className="bg-green-100 text-green-700"
                     >
                       Yes
                     </Button>
+
                     <Button
+                      onClick={() => {
+                        setOrderType("no");
+                        setOrderModalOpen(true);
+                      }}
                       variant={"outline"}
                       size="sm"
                       className="bg-red-100 text-red-700"
@@ -76,6 +88,14 @@ const EventCard = ({ id, title, image, markets }: EventCardProps) => {
           ))}
         </div>
       )}
+      <OrderModal
+        open={orderModalOpen}
+        onOpenChange={setOrderModalOpen}
+        type={orderType}
+        image={image}
+        title={title}
+        description="Place your order below"
+      />
     </Card>
   );
 };

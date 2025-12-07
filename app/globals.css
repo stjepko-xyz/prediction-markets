@@ -32,7 +32,7 @@ html {
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
+  --color-muted: var(--muted);  
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
@@ -129,36 +129,12 @@ button, a {
   cursor: pointer;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 600; 
-}
-
-h1 {
-  font-size: 40px;
-}
-
-h2 {
-  font-size: 32px;
-}
-
-h3 {
-  font-size: 24px;
-}
-
-h4 {
-  font-size: 20px;
-}
-
-h5 {
-  font-size: 16px;
-}
-
-h6 {
-  font-size: 14px;
-}
-
 span {
   font-size: 14px;
+}
+
+html body[data-scroll-locked] {
+  margin-right: 0 !important;
 }
 
 /* Styles for Solana Wallet Adapter UI */

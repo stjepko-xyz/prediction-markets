@@ -1,5 +1,4 @@
-import { Markets, EventHeader } from "@/components/index";
-import { Button } from "@/components/ui/button";
+import { Markets, EventHeader, OrderForm } from "@/components/index";
 import { Card } from "@/components/ui/card";
 import { Suspense } from "react";
 
@@ -22,7 +21,7 @@ export default async function Page({
       </div>
       <div className="order-panel w-80 shrink-0">
         <Card className="p-4">
-          <Button variant={"secondary"}>Trade</Button>
+          <OrderForm type="yes" />
         </Card>
       </div>
     </main>
