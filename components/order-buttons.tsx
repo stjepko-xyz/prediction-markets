@@ -5,10 +5,24 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 interface OrderButtonsProps {
   side: "yes" | "no";
   action: "buy" | "sell";
+  market: {
+    ticker: string;
+    yesAsk: number | string;
+    yesBid: number | string;
+    yesSubTitle: string;
+    noAsk: number | string;
+    noBid: number | string;
+    noSubTitle: string;
+  } | null;
   onChange: (value: "yes" | "no") => void;
 }
 
-const OrderButtons = ({ side, action, onChange }: OrderButtonsProps) => {
+const OrderButtons = ({
+  side,
+  action,
+  market,
+  onChange,
+}: OrderButtonsProps) => {
   return (
     <ToggleGroup
       type="single"
@@ -24,7 +38,10 @@ const OrderButtons = ({ side, action, onChange }: OrderButtonsProps) => {
       >
         <div className="flex items-baseline gap-1">
           <span className="text-xs">{action}</span>
-          Yes
+          {action === "buy" &&
+            `Yes ${Number(market?.yesAsk ?? 0).toFixed(2)} ¢`}
+          {action === "sell" &&
+            `Yes ${Number(market?.yesBid ?? 0).toFixed(2)} ¢`}
         </div>
       </ToggleGroupItem>
       <ToggleGroupItem
@@ -35,7 +52,8 @@ const OrderButtons = ({ side, action, onChange }: OrderButtonsProps) => {
       >
         <div className="flex items-baseline gap-1">
           <span className="text-xs">{action}</span>
-          No
+          {action === "buy" && `No ${Number(market?.noAsk ?? 0).toFixed(2)} ¢`}
+          {action === "sell" && `No ${Number(market?.noBid ?? 0).toFixed(2)} ¢`}
         </div>
       </ToggleGroupItem>
     </ToggleGroup>

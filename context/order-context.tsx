@@ -4,11 +4,11 @@ import { createContext, useContext, useState, ReactNode } from "react";
 
 export interface Market {
   ticker: string;
-  yesAsk: number;
-  yesBid: number;
+  yesAsk: number | string;
+  yesBid: number | string;
   yesSubTitle: string;
-  noAsk: number;
-  noBid: number;
+  noAsk: number | string;
+  noBid: number | string;
   noSubTitle: string;
 }
 

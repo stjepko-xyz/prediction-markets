@@ -28,7 +28,7 @@ interface EventCardProps {
 const EventCard = ({ id, title, image, markets }: EventCardProps) => {
   const [orderModalOpen, setOrderModalOpen] = useState(false);
   const [imageError, setImageError] = useState(false);
-  const { setSide, setMarket } = useOrder();
+  const { setSide, setMarket, market } = useOrder();
 
   return (
     <Card className="p-4 gap-4 w-full justify-between">
@@ -113,7 +113,7 @@ const EventCard = ({ id, title, image, markets }: EventCardProps) => {
         onOpenChange={setOrderModalOpen}
         image={image}
         title={title}
-        description="Place your order below"
+        description={market?.yesSubTitle}
       />
     </Card>
   );

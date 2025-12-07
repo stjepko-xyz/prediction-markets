@@ -43,10 +43,20 @@ const OrderForm = ({ className }: OrderFormProps) => {
           <TabsTrigger value="sell">Sell</TabsTrigger>
         </TabsList>
         <TabsContent value="buy">
-          <OrderButtons side={side} action={action} onChange={setSide} />
+          <OrderButtons
+            side={side}
+            action={action}
+            market={market}
+            onChange={setSide}
+          />
         </TabsContent>
         <TabsContent value="sell">
-          <OrderButtons side={side} action={action} onChange={setSide} />
+          <OrderButtons
+            side={side}
+            action={action}
+            market={market}
+            onChange={setSide}
+          />
         </TabsContent>
       </Tabs>
       <div className="flex flex-col gap-2">
