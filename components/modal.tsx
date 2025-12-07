@@ -68,15 +68,26 @@ const Modal = ({
 
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
-      <DrawerContent>
-        <DrawerHeader className="text-left">
-          <DrawerTitle className="">{title}</DrawerTitle>
-          <DrawerDescription>{description}</DrawerDescription>
+      <DrawerContent className="px-4">
+        <DrawerHeader className="text-left px-0">
+          <div className="flex items-center gap-4">
+            <Image
+              src={image}
+              alt={title}
+              width={40}
+              height={40}
+              className="rounded-md object-cover shrink-0"
+            />
+            <div>
+              <DrawerTitle>{title}</DrawerTitle>
+              <DrawerDescription>{description}</DrawerDescription>
+            </div>
+          </div>
         </DrawerHeader>
         {children}
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
-            <Button variant="outline">Cancel</Button>
+            <Button variant="ghost">Cancel</Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
