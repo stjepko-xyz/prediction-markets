@@ -39,6 +39,8 @@ The app integrates with the DFlow API to fetch (Kalshi) prediction market data: 
 
 <img width="1495" height="818" alt="Screenshot 2025-12-07 at 22 33 59" src="https://github.com/user-attachments/assets/0c9192a5-ac88-4ae7-af46-e97c05d84957" />
 <img width="502" height="816" alt="Screenshot 2025-12-07 at 22 34 32" src="https://github.com/user-attachments/assets/b107e923-d21f-4872-a731-665745828056" />
+<img width="1491" height="816" alt="Screenshot 2025-12-07 at 22 48 28" src="https://github.com/user-attachments/assets/ab7eeb7f-7893-4656-a29d-4e9faf32225a" />
+
 
 ## Getting Started
 
