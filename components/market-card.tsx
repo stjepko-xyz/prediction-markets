@@ -2,6 +2,7 @@
 
 import { useOrder } from "@/context/order-context";
 import { Button } from "@/components/ui/button";
+import { toPercent } from "@/lib/utils";
 
 interface MarketCardProps {
   id: string;
@@ -44,7 +45,7 @@ const MarketCard = ({
   return (
     <div id={id} className="flex justify-between items-center border-b py-4">
       <h5 className="w-40">{title}</h5>
-      <h3>73%</h3>
+      <p className="font-semibold text-xl">{toPercent(yesAsk)}</p>
       <div className="flex gap-2">
         <Button
           variant="outline"

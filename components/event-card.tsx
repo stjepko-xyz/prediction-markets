@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useState } from "react";
 import OrderModal from "./order-modal";
 import { useOrder } from "@/context/order-context";
+import { toPercent } from "@/lib/utils";
 
 interface EventCardProps {
   id: string;
@@ -16,12 +17,11 @@ interface EventCardProps {
   markets: Array<{
     ticker?: string;
     yesSubTitle: string;
-    yesAsk?: number;
-    yesBid?: number;
+    yesAsk?: number | string;
+    yesBid?: number | string;
     noSubTitle?: string;
-    noAsk?: number;
-    noBid?: number;
-    probability?: number;
+    noAsk?: number | string;
+    noBid?: number | string;
   }>;
 }
 
@@ -72,7 +72,7 @@ const EventCard = ({ id, title, image, markets }: EventCardProps) => {
               >
                 <span className="line-clamp-1">{market?.yesSubTitle}</span>
                 <div className="flex items-center gap-2">
-                  <h5>{market?.probability || "20"}%</h5>
+                  <p className="font-semibold">{toPercent(market?.yesAsk)}</p>
                   <div className="flex">
                     <ButtonGroup>
                       <Button

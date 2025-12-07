@@ -16,7 +16,7 @@ interface Event {
   ticker: string;
   title: string;
   imageUrl: string;
-  markets: Array<{ yesSubTitle: string; probability?: number }>;
+  markets: Array<{ yesSubTitle: string }>;
 }
 
 const Events = async ({ cursor = 0 }: EventsProps) => {
