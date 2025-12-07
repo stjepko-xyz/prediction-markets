@@ -19,12 +19,12 @@ interface OrderFormProps {
 }
 
 const OrderForm = ({ className }: OrderFormProps) => {
-  const { side, setSide, action, setAction, selectedMarket } = useOrder();
+  const { side, setSide, action, setAction, market } = useOrder();
   const [amount, setAmount] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Order submitted:", { action, side, amount, selectedMarket });
+    console.log("Order submitted:", { action, side, amount, market });
     // TODO: Handle order submission
   };
 

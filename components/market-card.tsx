@@ -6,16 +6,37 @@ import { Button } from "@/components/ui/button";
 interface MarketCardProps {
   id: string;
   title: string;
+  yesAsk?: number;
+  yesBid?: number;
+  noAsk?: number;
+  noBid?: number;
+  noSubTitle?: string;
 }
 
-const MarketCard = ({ id, title }: MarketCardProps) => {
-  const { side, setSide, selectedMarket, setSelectedMarket } = useOrder();
+const MarketCard = ({
+  id,
+  title,
+  yesAsk = 0,
+  yesBid = 0,
+  noAsk = 0,
+  noBid = 0,
+  noSubTitle = "",
+}: MarketCardProps) => {
+  const { side, setSide, market, setMarket } = useOrder();
 
-  const isSelected = selectedMarket === id;
+  const isSelected = market?.ticker === id;
 
   const handleClick = (newSide: "yes" | "no") => {
     setSide(newSide);
-    setSelectedMarket(id);
+    setMarket({
+      ticker: id,
+      yesAsk,
+      yesBid,
+      yesSubTitle: title,
+      noAsk,
+      noBid,
+      noSubTitle,
+    });
   };
 
   return (

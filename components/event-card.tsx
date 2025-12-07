@@ -16,6 +16,11 @@ interface EventCardProps {
   markets: Array<{
     ticker?: string;
     yesSubTitle: string;
+    yesAsk?: number;
+    yesBid?: number;
+    noSubTitle?: string;
+    noAsk?: number;
+    noBid?: number;
     probability?: number;
   }>;
 }
@@ -23,7 +28,7 @@ interface EventCardProps {
 const EventCard = ({ id, title, image, markets }: EventCardProps) => {
   const [orderModalOpen, setOrderModalOpen] = useState(false);
   const [imageError, setImageError] = useState(false);
-  const { setSide, setSelectedMarket } = useOrder();
+  const { setSide, setMarket } = useOrder();
 
   return (
     <Card className="p-4 gap-4 w-full justify-between">
@@ -51,7 +56,15 @@ const EventCard = ({ id, title, image, markets }: EventCardProps) => {
       {markets && (
         <div className="space-y-2">
           {markets.slice(0, 2).map((market, index) => {
-            const marketId = market?.ticker ?? `${id}-market-${index}`;
+            const marketData = {
+              ticker: market?.ticker ?? `${id}-market-${index}`,
+              yesAsk: market?.yesAsk ?? 0,
+              yesBid: market?.yesBid ?? 0,
+              yesSubTitle: market?.yesSubTitle ?? "",
+              noAsk: market?.noAsk ?? 0,
+              noBid: market?.noBid ?? 0,
+              noSubTitle: market?.noSubTitle ?? "",
+            };
             return (
               <div
                 key={index}
@@ -65,7 +78,7 @@ const EventCard = ({ id, title, image, markets }: EventCardProps) => {
                       <Button
                         onClick={() => {
                           setSide("yes");
-                          setSelectedMarket(marketId);
+                          setMarket(marketData);
                           setOrderModalOpen(true);
                         }}
                         variant={"outline"}
@@ -78,7 +91,7 @@ const EventCard = ({ id, title, image, markets }: EventCardProps) => {
                       <Button
                         onClick={() => {
                           setSide("no");
-                          setSelectedMarket(marketId);
+                          setMarket(marketData);
                           setOrderModalOpen(true);
                         }}
                         variant={"outline"}

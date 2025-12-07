@@ -2,13 +2,23 @@
 
 import { createContext, useContext, useState, ReactNode } from "react";
 
+export interface Market {
+  ticker: string;
+  yesAsk: number;
+  yesBid: number;
+  yesSubTitle: string;
+  noAsk: number;
+  noBid: number;
+  noSubTitle: string;
+}
+
 interface OrderContextType {
   side: "yes" | "no";
   setSide: (side: "yes" | "no") => void;
   action: "buy" | "sell";
   setAction: (action: "buy" | "sell") => void;
-  selectedMarket: string | null;
-  setSelectedMarket: (marketId: string | null) => void;
+  market: Market | null;
+  setMarket: (market: Market | null) => void;
 }
 
 const OrderContext = createContext<OrderContextType | undefined>(undefined);
@@ -16,7 +26,7 @@ const OrderContext = createContext<OrderContextType | undefined>(undefined);
 export function OrderProvider({ children }: { children: ReactNode }) {
   const [side, setSide] = useState<"yes" | "no">("yes");
   const [action, setAction] = useState<"buy" | "sell">("buy");
-  const [selectedMarket, setSelectedMarket] = useState<string | null>(null);
+  const [market, setMarket] = useState<Market | null>(null);
 
   return (
     <OrderContext.Provider
@@ -25,8 +35,8 @@ export function OrderProvider({ children }: { children: ReactNode }) {
         setSide,
         action,
         setAction,
-        selectedMarket,
-        setSelectedMarket,
+        market,
+        setMarket,
       }}
     >
       {children}
