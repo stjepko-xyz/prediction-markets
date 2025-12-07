@@ -4,7 +4,7 @@ const getEvents = async (cursor: number = 0) => {
   try {
     // Fetch events with nested markets included
     const response = await fetch(
-      `${process.env.DFLOW_API_BASE_URL}/api/v1/events?withNestedMarkets=true&limit=${EVENTS_PER_PAGE}&cursor=${cursor}`,
+      `${process.env.DFLOW_API_BASE_URL}/api/v1/events?withNestedMarkets=true&status=active&sort=volume&limit=${EVENTS_PER_PAGE}&cursor=${cursor}`,
       {
         method: "GET",
         headers: {
