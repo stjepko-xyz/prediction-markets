@@ -10,6 +10,7 @@ import Markets from "./markets";
 import EventHeader from "./event-header";
 import OrderModal from "./order-modal";
 import OrderForm from "./order-form";
+import OrderButtons from "./order-buttons";
 import Modal from "./modal";
 
 export {
@@ -26,4 +27,5 @@ export {
   Modal,
   OrderModal,
   OrderForm,
+  OrderButtons,
 };

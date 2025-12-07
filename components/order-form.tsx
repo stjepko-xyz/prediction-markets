@@ -1,60 +1,93 @@
 "use client";
 
-import * as React from "react";
+import { useState } from "react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
   InputGroupText,
-  InputGroupTextarea,
 } from "@/components/ui/input-group";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import OrderButtons from "./order-buttons";
 
 interface OrderFormProps {
   className?: string;
-  type: "yes" | "no";
+  side: "yes" | "no";
 }
 
-const OrderForm = ({ className, type }: OrderFormProps) => {
+interface OrderState {
+  action: "buy" | "sell";
+  side: "yes" | "no";
+  amount: string;
+}
+
+const OrderForm = ({ className, side }: OrderFormProps) => {
+  const [order, setOrder] = useState<OrderState>({
+    action: "buy",
+    side: side,
+    amount: "",
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Order submitted:", order);
+    // TODO: Handle order submission
+  };
+
   return (
-    <form className={cn("grid items-start gap-6", className)}>
-      <Tabs defaultValue="buy">
+    <form
+      onSubmit={handleSubmit}
+      className={cn("grid items-start gap-4", className)}
+    >
+      <Tabs
+        className="gap-4"
+        value={order.action}
+        onValueChange={(value) =>
+          setOrder((prev) => ({ ...prev, action: value as "buy" | "sell" }))
+        }
+      >
         <TabsList>
           <TabsTrigger value="buy">Buy</TabsTrigger>
           <TabsTrigger value="sell">Sell</TabsTrigger>
         </TabsList>
         <TabsContent value="buy">
-          <ToggleGroup type="single" defaultValue={type}>
-            <ToggleGroupItem size={"lg"} value="yes" aria-label="Toggle bold">
-              Yes
-            </ToggleGroupItem>
-            <ToggleGroupItem
-              value="no"
-              size={"lg"}
-              aria-label="Toggle strikethrough"
-            >
-              No
-            </ToggleGroupItem>
-          </ToggleGroup>
+          <OrderButtons
+            side={order.side}
+            action={order.action}
+            onChange={(side) => setOrder((prev) => ({ ...prev, side }))}
+          />
         </TabsContent>
-        <TabsContent value="sell"></TabsContent>
+        <TabsContent value="sell">
+          <OrderButtons
+            side={order.side}
+            action={order.action}
+            onChange={(side) => setOrder((prev) => ({ ...prev, side }))}
+          />
+        </TabsContent>
       </Tabs>
-      <InputGroup>
-        <InputGroupAddon>
-          <InputGroupText>$</InputGroupText>
-        </InputGroupAddon>
-        <InputGroupInput placeholder="0.00" />
-        <InputGroupAddon align="inline-end">
-          <InputGroupText>USD</InputGroupText>
-        </InputGroupAddon>
-      </InputGroup>
-      <Button type="submit" variant={"outline"}>
-        Trade
-      </Button>
+      <div className="flex flex-col gap-2">
+        <InputGroup>
+          <InputGroupAddon>
+            <InputGroupText>$</InputGroupText>
+          </InputGroupAddon>
+          <InputGroupInput
+            placeholder="0.00"
+            value={order.amount}
+            onChange={(e) =>
+              setOrder((prev) => ({ ...prev, amount: e.target.value }))
+            }
+          />
+          <InputGroupAddon align="inline-end">
+            <InputGroupText>USD</InputGroupText>
+          </InputGroupAddon>
+        </InputGroup>
+        <Button type="submit" variant={"outline"}>
+          Trade
+        </Button>
+      </div>
     </form>
   );
 };

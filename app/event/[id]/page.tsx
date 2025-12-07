@@ -19,7 +19,7 @@ export default async function Page({
           <Markets eventId={id} />
         </Suspense>
       </div>
-      <div className="order-panel w-80 shrink-0">
+      <div className="order-panel w-80 shrink-0 sticky top-20 self-start">
         <Card className="p-4">
           <OrderForm type="yes" />
         </Card>

@@ -1,17 +1,25 @@
 "use client";
 
-import * as React from "react";
 import Modal from "./modal";
 import OrderForm from "./order-form";
+
+interface OrderModalProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  side: "yes" | "no";
+  image?: string;
+  title?: string;
+  description?: string;
+}
 
 const OrderModal = ({
   open,
   onOpenChange,
-  type,
+  side,
   image,
   title,
   description,
-}) => {
+}: OrderModalProps) => {
   return (
     <Modal
       open={open}
@@ -20,7 +28,7 @@ const OrderModal = ({
       description={description}
       image={image}
     >
-      <OrderForm type={type} />
+      <OrderForm side={side} />
     </Modal>
   );
 };

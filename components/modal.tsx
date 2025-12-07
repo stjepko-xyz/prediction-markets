@@ -45,7 +45,7 @@ const Modal = ({
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
+          <DialogHeader className="mb-4">
             <div className="flex items-center gap-4">
               <Image
                 src={image}

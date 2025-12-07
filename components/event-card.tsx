@@ -20,7 +20,7 @@ interface EventCardProps {
 
 const EventCard = ({ id, title, image, markets }: EventCardProps) => {
   const [orderModalOpen, setOrderModalOpen] = useState(false);
-  const [orderType, setOrderType] = useState<"yes" | "no">("yes");
+  const [orderSide, setOrderSide] = useState<"yes" | "no">("yes");
   const [imageError, setImageError] = useState(false);
 
   return (
@@ -29,7 +29,7 @@ const EventCard = ({ id, title, image, markets }: EventCardProps) => {
         <div className="flex items-start justify-between gap-4">
           {title && (
             <Link href={`/event/${id}`} className="hover:underline">
-              <h5 className="line-clamp-2">{title}</h5>
+              <h5 className="line-clamp-2 font-semibold">{title}</h5>
             </Link>
           )}
           <div className="h-[40px] w-[40px]">
@@ -60,7 +60,7 @@ const EventCard = ({ id, title, image, markets }: EventCardProps) => {
                   <ButtonGroup>
                     <Button
                       onClick={() => {
-                        setOrderType("yes");
+                        setOrderSide("yes");
                         setOrderModalOpen(true);
                       }}
                       variant={"outline"}
@@ -72,7 +72,7 @@ const EventCard = ({ id, title, image, markets }: EventCardProps) => {
 
                     <Button
                       onClick={() => {
-                        setOrderType("no");
+                        setOrderSide("no");
                         setOrderModalOpen(true);
                       }}
                       variant={"outline"}
@@ -91,7 +91,7 @@ const EventCard = ({ id, title, image, markets }: EventCardProps) => {
       <OrderModal
         open={orderModalOpen}
         onOpenChange={setOrderModalOpen}
-        type={orderType}
+        side={orderSide}
         image={image}
         title={title}
         description="Place your order below"
