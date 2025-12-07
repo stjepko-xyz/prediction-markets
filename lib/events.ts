@@ -1,6 +1,8 @@
+import { Event, EventsResponse } from "./types";
+
 const EVENTS_PER_PAGE = 20;
 
-const getEvents = async (cursor: number = 0) => {
+const getEvents = async (cursor: number = 0): Promise<EventsResponse> => {
   try {
     // Fetch events with nested markets included
     const response = await fetch(
@@ -32,7 +34,10 @@ const getEvents = async (cursor: number = 0) => {
   }
 };
 
-const getEventById = async (id: string, withNestedMarkets: boolean = false) => {
+const getEventById = async (
+  id: string,
+  withNestedMarkets: boolean = false
+): Promise<Event | null> => {
   try {
     // Fetch single event by id (ticker) with nested markets included
     const response = await fetch(
@@ -49,12 +54,12 @@ const getEventById = async (id: string, withNestedMarkets: boolean = false) => {
       throw new Error("Failed to fetch events");
     }
 
-    const data = await response.json();
+    const data: Event = await response.json();
 
     return data;
   } catch (error) {
     console.error("Error fetching events:", error);
-    return [];
+    return null;
   }
 };
 

@@ -10,8 +10,8 @@ export default async function Page({
   const { id } = await params;
 
   return (
-    <main className="flex gap-8">
-      <div className="flex-1">
+    <main className="flex flex-col lg:flex-row gap-8">
+      <div className="flex-1 min-w-0">
         <Suspense>
           <EventHeader eventId={id} />
         </Suspense>
@@ -19,7 +19,7 @@ export default async function Page({
           <Markets eventId={id} />
         </Suspense>
       </div>
-      <div className="order-panel w-80 shrink-0 sticky top-20 self-start">
+      <div className="order-panel w-full lg:w-80 shrink-0 lg:sticky lg:top-20 lg:self-start">
         <Card className="p-4">
           <OrderForm />
         </Card>

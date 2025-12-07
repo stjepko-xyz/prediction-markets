@@ -31,11 +31,6 @@ const Navigation = () => {
             <Link href="/">Events</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <Link href="/markets">Markets</Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
       </NavigationMenuList>
       <NavigationMenuList>
         <NavigationMenuItem>

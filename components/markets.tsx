@@ -1,15 +1,6 @@
 import { getEventById } from "@/lib/events";
+import { Market } from "@/lib/types";
 import MarketCard from "./market-card";
-
-interface Market {
-  ticker?: string;
-  yesSubTitle: string;
-  yesAsk?: number | string;
-  yesBid?: number | string;
-  noSubTitle?: string;
-  noAsk?: number | string;
-  noBid?: number | string;
-}
 
 interface MarketsProps {
   eventId: string;

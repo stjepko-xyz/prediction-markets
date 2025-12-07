@@ -15,9 +15,9 @@ const categories = [
 
 const Categories = () => {
   return (
-    <div className="flex space-y-2">
+    <div className="flex space-y-2 overflow-x-hidden">
       {categories?.map((category) => (
-        <Button key={category} variant="ghost" asChild>
+        <Button disabled key={category} variant="ghost" asChild>
           <Link href="#">{category}</Link>
         </Button>
       ))}

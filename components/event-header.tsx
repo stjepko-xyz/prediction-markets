@@ -3,7 +3,7 @@ import { getEventById } from "@/lib/events";
 
 const EventHeader = async ({ eventId }: { eventId: string }) => {
   const event = await getEventById(eventId);
-  console.log(event);
+
   return (
     <div className="sticky top-0 bg-background flex items-center gap-4 py-4 z-10 border-b">
       <Image
