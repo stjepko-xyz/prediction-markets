@@ -6,14 +6,16 @@ const EventHeader = async ({ eventId }: { eventId: string }) => {
 
   return (
     <div className="sticky top-0 bg-background flex items-center gap-4 py-4 z-10 border-b">
-      <Image
-        src={event?.imageUrl}
-        alt={event?.title}
-        width={80}
-        height={80}
-        className="rounded-md object-cover"
-      />
-      <h2 className="text-2xl font-semibold">{event?.title}</h2>
+      {event && (
+        <Image
+          src={event?.imageUrl}
+          alt={event?.title}
+          width={80}
+          height={80}
+          className="rounded-md object-cover"
+        />
+      )}
+      {event && <h2 className="text-2xl font-semibold">{event?.title}</h2>}
     </div>
   );
 };

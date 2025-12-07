@@ -1,8 +1,8 @@
-import { Event, EventsResponse } from "./types";
+import { Event, Events } from "./types";
 
 const EVENTS_PER_PAGE = 20;
 
-const getEvents = async (cursor: number = 0): Promise<EventsResponse> => {
+const getEvents = async (cursor: number = 0): Promise<Events> => {
   try {
     // Fetch events with nested markets included
     const response = await fetch(

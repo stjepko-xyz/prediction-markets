@@ -42,7 +42,7 @@ export interface Event {
   volume24h: number;
 }
 
-export interface EventsResponse {
+export interface Events {
   events: Event[];
   cursor: number;
 }

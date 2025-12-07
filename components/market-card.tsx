@@ -47,7 +47,7 @@ const MarketCard = ({
       id={id}
       className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 border-b py-4"
     >
-      <h5 className="font-medium sm:w-40">{title}</h5>
+      {title && <h5 className="font-medium sm:w-40">{title}</h5>}
       <div className="flex items-center justify-between sm:flex-1 gap-4">
         <p className="font-semibold text-xl">{toPercent(yesAsk)}</p>
         <div className="flex gap-2">

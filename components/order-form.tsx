@@ -73,6 +73,7 @@ const OrderForm = ({ className }: OrderFormProps) => {
             <InputGroupText>USD</InputGroupText>
           </InputGroupAddon>
         </InputGroup>
+        {/* DEV: Trigger Solana transaction or any BE logic here: Use the amount, side, action, and market data */}
         <Button type="submit" variant={"outline"}>
           Trade
         </Button>

@@ -2,11 +2,9 @@
 
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import Logo from "./logo";
