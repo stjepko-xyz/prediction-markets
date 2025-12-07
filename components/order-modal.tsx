@@ -6,7 +6,6 @@ import OrderForm from "./order-form";
 interface OrderModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  side: "yes" | "no";
   image?: string;
   title?: string;
   description?: string;
@@ -15,7 +14,6 @@ interface OrderModalProps {
 const OrderModal = ({
   open,
   onOpenChange,
-  side,
   image,
   title,
   description,
@@ -28,7 +26,7 @@ const OrderModal = ({
       description={description}
       image={image}
     >
-      <OrderForm side={side} />
+      <OrderForm />
     </Modal>
   );
 };

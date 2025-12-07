@@ -13,7 +13,7 @@ const EventHeader = async ({ eventId }: { eventId: string }) => {
         height={80}
         className="rounded-md object-cover"
       />
-      <h2>{event?.title}</h2>
+      <h2 className="text-2xl font-semibold">{event?.title}</h2>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Separator } from "@/components/ui/separator";
 import { Wallet, Navigation, Categories } from "@/components/index";
+import { OrderProvider } from "@/context/order-context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,14 +43,16 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Wallet>
-          <div className="header max-w-[1280px] mx-auto px-4">
-            <Navigation />
-            <Categories />
-          </div>
-          <Separator />
-          <div className="page max-w-[1280px] mx-auto px-4 py-8">
-            {children}
-          </div>
+          <OrderProvider>
+            <div className="header max-w-[1280px] mx-auto px-4">
+              <Navigation />
+              <Categories />
+            </div>
+            <Separator />
+            <div className="page max-w-[1280px] mx-auto px-4 py-8">
+              {children}
+            </div>
+          </OrderProvider>
         </Wallet>
       </body>
     </html>

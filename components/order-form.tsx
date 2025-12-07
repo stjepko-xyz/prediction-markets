@@ -12,28 +12,19 @@ import {
 } from "@/components/ui/input-group";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import OrderButtons from "./order-buttons";
+import { useOrder } from "@/context/order-context";
 
 interface OrderFormProps {
   className?: string;
-  side: "yes" | "no";
 }
 
-interface OrderState {
-  action: "buy" | "sell";
-  side: "yes" | "no";
-  amount: string;
-}
-
-const OrderForm = ({ className, side }: OrderFormProps) => {
-  const [order, setOrder] = useState<OrderState>({
-    action: "buy",
-    side: side,
-    amount: "",
-  });
+const OrderForm = ({ className }: OrderFormProps) => {
+  const { side, setSide, action, setAction, selectedMarket } = useOrder();
+  const [amount, setAmount] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Order submitted:", order);
+    console.log("Order submitted:", { action, side, amount, selectedMarket });
     // TODO: Handle order submission
   };
 
@@ -44,28 +35,18 @@ const OrderForm = ({ className, side }: OrderFormProps) => {
     >
       <Tabs
         className="gap-4"
-        value={order.action}
-        onValueChange={(value) =>
-          setOrder((prev) => ({ ...prev, action: value as "buy" | "sell" }))
-        }
+        value={action}
+        onValueChange={(value) => setAction(value as "buy" | "sell")}
       >
         <TabsList>
           <TabsTrigger value="buy">Buy</TabsTrigger>
           <TabsTrigger value="sell">Sell</TabsTrigger>
         </TabsList>
         <TabsContent value="buy">
-          <OrderButtons
-            side={order.side}
-            action={order.action}
-            onChange={(side) => setOrder((prev) => ({ ...prev, side }))}
-          />
+          <OrderButtons side={side} action={action} onChange={setSide} />
         </TabsContent>
         <TabsContent value="sell">
-          <OrderButtons
-            side={order.side}
-            action={order.action}
-            onChange={(side) => setOrder((prev) => ({ ...prev, side }))}
-          />
+          <OrderButtons side={side} action={action} onChange={setSide} />
         </TabsContent>
       </Tabs>
       <div className="flex flex-col gap-2">
@@ -75,10 +56,8 @@ const OrderForm = ({ className, side }: OrderFormProps) => {
           </InputGroupAddon>
           <InputGroupInput
             placeholder="0.00"
-            value={order.amount}
-            onChange={(e) =>
-              setOrder((prev) => ({ ...prev, amount: e.target.value }))
-            }
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
           />
           <InputGroupAddon align="inline-end">
             <InputGroupText>USD</InputGroupText>

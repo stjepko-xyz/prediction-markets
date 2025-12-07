@@ -21,7 +21,7 @@ export default async function Page({
       </div>
       <div className="order-panel w-80 shrink-0 sticky top-20 self-start">
         <Card className="p-4">
-          <OrderForm type="yes" />
+          <OrderForm />
         </Card>
       </div>
     </main>
