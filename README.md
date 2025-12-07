@@ -1,6 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Prediction Markets
+
+Prediction markets implementation example: Allowing users to browse events, view market odds and place fake trades.
+
+<img width="1491" height="816" alt="Screenshot 2025-12-07 at 22 33 40" src="https://github.com/user-attachments/assets/886c8f16-c232-4550-af66-c55e5beb03cc" />
+
+## Features
+
+- **Event Browsing** - Browse active prediction events
+- **Market Trading** - Each event has markets that are available for trading
+- **Real-time Odds** - View current ask/bid prices displayed as percentages
+- **Responsive Design** - Mobile-friendly UI that adapts to all screen sizes
+- **Order Form** - Interactive order placement with buy/sell toggles
+- **Solana Wallet Adapter** - Connect with your solana wallet
+
+## Pages
+
+| Route | Description |
+|-------|-------------|
+| `/` | Home page with event listings and category filters |
+| `/event/[id]` | Event detail page with all markets and order form |
+
+## API Integration
+
+The app integrates with the DFlow API to fetch (Kalshi) prediction market data: https://pond.dflow.net/quickstart/discover-prediction-tokens
+
+- `GET /api/v1/events` - Fetch paginated list of active events with nested markets
+- `GET /api/v1/event/:id` - Fetch single event details by ticker
+
+## Missing features at the moment
+- In order to trade, real solana transactions need to be added (see DFlow API)
+- Real categories can be added 
+- Event filters
+- Display chart data (Airbnb library has low bundle size charts which are recommended https://visx.airbnb.tech/)
+- Order book data
+- Overal general information for each market, rules i.e.
+
+## Screenshots
+
+<img width="1495" height="818" alt="Screenshot 2025-12-07 at 22 33 59" src="https://github.com/user-attachments/assets/0c9192a5-ac88-4ae7-af46-e97c05d84957" />
+<img width="502" height="816" alt="Screenshot 2025-12-07 at 22 34 32" src="https://github.com/user-attachments/assets/b107e923-d21f-4872-a731-665745828056" />
 
 ## Getting Started
+
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 First, run the development server:
 
