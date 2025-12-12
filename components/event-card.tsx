@@ -1,12 +1,11 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { ButtonGroup } from "@/components/ui/button-group";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import OrderModal from "./order-modal";
+import OrderButtons from "./order-buttons";
 import { useOrder } from "@/context/order-context";
 import { toPercent, formatCurrency } from "@/lib/utils";
 import {
@@ -35,7 +34,6 @@ const EventCard = ({ id, title, image, volume, markets }: EventCardProps) => {
   const [orderModalOpen, setOrderModalOpen] = useState(false);
   const [imageError, setImageError] = useState(false);
   const { setSide, setMarket, market } = useOrder();
-
   return (
     <Card className="flex p-4 gap-4 w-full justify-between">
       {(title || image || markets) && (
@@ -74,37 +72,22 @@ const EventCard = ({ id, title, image, volume, markets }: EventCardProps) => {
                   noSubTitle: market?.noSubTitle ?? "",
                 };
 
+                const handleChange = (side: "yes" | "no") => {
+                  setSide(side);
+                  setMarket(marketData);
+                  setOrderModalOpen(true);
+                };
+
                 if (markets?.length === 1) {
                   return (
-                    <div key={index} className="w-full flex flex-1">
-                      <ButtonGroup className="flex flex-1 w-full h-full">
-                        <Button
-                          onClick={() => {
-                            setSide("yes");
-                            setMarket(marketData);
-                            setOrderModalOpen(true);
-                          }}
-                          variant={"outline"}
-                          size="sm"
-                          className="flex-1 h-full text-md bg-green-100 text-green-700"
-                        >
-                          Yes {toPercent(market?.yesAsk)}
-                        </Button>
-
-                        <Button
-                          onClick={() => {
-                            setSide("no");
-                            setMarket(marketData);
-                            setOrderModalOpen(true);
-                          }}
-                          variant={"outline"}
-                          size="sm"
-                          className="flex-1 h-full text-md bg-red-100 text-red-700"
-                        >
-                          No {toPercent(market?.noAsk)}
-                        </Button>
-                      </ButtonGroup>
-                    </div>
+                    <OrderButtons
+                      key={index}
+                      market={marketData}
+                      onChange={handleChange}
+                      fullWidth
+                      showSide
+                      showChance
+                    />
                   );
                 } else {
                   return (
@@ -117,37 +100,13 @@ const EventCard = ({ id, title, image, volume, markets }: EventCardProps) => {
                       </span>
                       <div className="flex items-center gap-2">
                         <p className="font-semibold">
-                          {toPercent(market?.yesAsk)}
+                          {toPercent(market?.yesAsk ?? 0)}
                         </p>
-                        <div className="flex">
-                          <ButtonGroup>
-                            <Button
-                              onClick={() => {
-                                setSide("yes");
-                                setMarket(marketData);
-                                setOrderModalOpen(true);
-                              }}
-                              variant={"outline"}
-                              size="sm"
-                              className="bg-green-100 text-green-700"
-                            >
-                              Yes
-                            </Button>
-
-                            <Button
-                              onClick={() => {
-                                setSide("no");
-                                setMarket(marketData);
-                                setOrderModalOpen(true);
-                              }}
-                              variant={"outline"}
-                              size="sm"
-                              className="bg-red-100 text-red-700"
-                            >
-                              No
-                            </Button>
-                          </ButtonGroup>
-                        </div>
+                        <OrderButtons
+                          market={marketData}
+                          onChange={handleChange}
+                          showSide
+                        />
                       </div>
                     </div>
                   );
