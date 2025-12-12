@@ -8,12 +8,18 @@ import Image from "next/image";
 import { useState } from "react";
 import OrderModal from "./order-modal";
 import { useOrder } from "@/context/order-context";
-import { toPercent } from "@/lib/utils";
+import { toPercent, formatCurrency } from "@/lib/utils";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface EventCardProps {
   id: string;
   title: string;
   image?: string;
+  volume?: number;
   markets: Array<{
     ticker?: string;
     yesSubTitle: string;
@@ -25,7 +31,7 @@ interface EventCardProps {
   }>;
 }
 
-const EventCard = ({ id, title, image, markets }: EventCardProps) => {
+const EventCard = ({ id, title, image, volume, markets }: EventCardProps) => {
   const [orderModalOpen, setOrderModalOpen] = useState(false);
   const [imageError, setImageError] = useState(false);
   const { setSide, setMarket, market } = useOrder();
@@ -39,7 +45,7 @@ const EventCard = ({ id, title, image, markets }: EventCardProps) => {
               <h5 className="line-clamp-2 font-semibold">{title}</h5>
             </Link>
           )}
-          <div className="h-[40px] w-[40px]">
+          <div className="flex h-[40px] w-[40px]">
             {image && !imageError && (
               <Image
                 src={image}
@@ -108,6 +114,19 @@ const EventCard = ({ id, title, image, markets }: EventCardProps) => {
           })}
         </div>
       )}
+      {volume && (
+        <Tooltip>
+          <TooltipTrigger className="w-fit">
+            <span className="text-muted-foreground">
+              {formatCurrency(volume)}
+            </span>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Total volume</p>
+          </TooltipContent>
+        </Tooltip>
+      )}
+
       <OrderModal
         open={orderModalOpen}
         onOpenChange={setOrderModalOpen}

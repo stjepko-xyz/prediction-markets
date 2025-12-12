@@ -1,4 +1,5 @@
 import { getEvents } from "@/lib/events";
+import { Event } from "@/lib/types";
 import EventCard from "./event-card";
 import {
   Pagination,
@@ -10,13 +11,6 @@ import {
 
 interface EventsProps {
   cursor?: number;
-}
-
-interface Event {
-  ticker: string;
-  title: string;
-  imageUrl: string;
-  markets: Array<{ yesSubTitle: string }>;
 }
 
 const Events = async ({ cursor = 0 }: EventsProps) => {
@@ -34,6 +28,7 @@ const Events = async ({ cursor = 0 }: EventsProps) => {
             title={event?.title}
             image={event?.imageUrl}
             markets={event?.markets}
+            volume={event?.volume}
           />
         ))}
       </div>
