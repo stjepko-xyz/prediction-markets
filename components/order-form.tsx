@@ -11,7 +11,7 @@ import {
   InputGroupText,
 } from "@/components/ui/input-group";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import OrderButtons from "./order-buttons";
+import OrderToggle from "./order-toggle";
 import { useOrder } from "@/context/order-context";
 
 interface OrderFormProps {
@@ -43,7 +43,7 @@ const OrderForm = ({ className }: OrderFormProps) => {
           <TabsTrigger value="sell">Sell</TabsTrigger>
         </TabsList>
         <TabsContent value="buy">
-          <OrderButtons
+          <OrderToggle
             side={side}
             action={action}
             market={market}
@@ -51,7 +51,7 @@ const OrderForm = ({ className }: OrderFormProps) => {
           />
         </TabsContent>
         <TabsContent value="sell">
-          <OrderButtons
+          <OrderToggle
             side={side}
             action={action}
             market={market}

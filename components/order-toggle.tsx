@@ -2,7 +2,7 @@
 
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
-interface OrderButtonsProps {
+interface OrderToggleProps {
   side: "yes" | "no";
   action: "buy" | "sell";
   market: {
@@ -17,12 +17,7 @@ interface OrderButtonsProps {
   onChange: (value: "yes" | "no") => void;
 }
 
-const OrderButtons = ({
-  side,
-  action,
-  market,
-  onChange,
-}: OrderButtonsProps) => {
+const OrderToggle = ({ side, action, market, onChange }: OrderToggleProps) => {
   return (
     <ToggleGroup
       type="single"
@@ -60,4 +55,4 @@ const OrderButtons = ({
   );
 };
 
-export default OrderButtons;
+export default OrderToggle;
