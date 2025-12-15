@@ -23,7 +23,7 @@ const getEvents = async (cursor: number = 0): Promise<Events> => {
     }
 
     const data = await response.json();
-    console.log(data);
+
     return {
       events: data?.events ?? [],
       cursor: data?.cursor ?? 0,
